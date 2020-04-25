@@ -47,7 +47,17 @@ suma:	mov 	cx, [210h + bx] ;asignamos el numero correspondiente a cx
 
 	mov	[27Bh],al ;resultado de la operacion promedio
 
-	
+	;una vez obtenido el resultado me dio 2 por lo tanto mi cadena es
+	;2 = “Aun se pasa”
+
+	mov word [201h], "AU"
+	mov word [203h], "N"
+
+	mov word [205h], "SE"
+
+	mov word [208h], "PA"
+
+	mov word [20Ah], "SA"
 
 	int 20h
 
