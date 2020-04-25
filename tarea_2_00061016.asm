@@ -59,5 +59,29 @@ suma:	mov 	cx, [210h + bx] ;asignamos el numero correspondiente a cx
 
 	mov word [20Ah], "SA"
 
+	;Ejercicio 2
+	org 100h;
+
+    ;Ejercicio 2
+	mov     ax, 4h	;Numero con el que iniciamos la serie
+	mov		bx, 0d	;indexador	
+
+	;Operacion para cuando el numero es menor de 100h
+covid1:	mov 	[210h + bx], ax	;asignando en la primera direccion de memoria el valor de AX
+		mov 	cx,2h	;duplicador de la serie
+		mul	cx	
+		inc	bx
+		cmp	ax, 100h ;Comparando el valor de ax con 100h 	
+		jb	covid1  ;saltando hacia la funcion 1
+
+	;Operacion para cuando el numero es mayor que 100h
+covid2:	mov 	[210h + bx], ax
+	mov 	cx,2h
+	mul	cx
+	inc	bx ;en este caso incrementamos dos veces por la naturaleza de los numeros
+	inc	bx
+	cmp	ax, 4097d ;le pongo un numero mayor para que lo escriba
+	jb	covid2
+
 	int 20h
 
