@@ -83,5 +83,39 @@ covid2:	mov 	[210h + bx], ax
 	cmp	ax, 4097d ;le pongo un numero mayor para que lo escriba
 	jb	covid2
 
+
+ ;Ejercicio 3
+
+	mov	ax, 0000h	;variable auxiliar
+	mov	bx, 0000h	;indice
+	mov	cx, 0000h	;F[n-2]
+	mov	dx, 0000h	;F[n-1]
+
+	mov	bl, 2d	;indice = 2
+	mov 	dl, 1d 	;F[1] = 1
+	mov	[220h], cl	;guardar F[0]
+	mov	[221h], dl	;guardar F[1]
+
+fibonacci:	mov	ax, dx	;AX = F[n-1]
+	add	ax, cx	;AX += F[n-2]
+	mov	[220h+bx], ax 	;guardar en la direccion correspondiente el valor de AX
+	mov	cx, dx	;F[n-2] = F[n-1]
+	mov	dx, ax 	;F[n-1] = AX
+	inc 	bl 	;incrementamos bl
+
+	cmp	bl, 14d	
+	jb	fibonacci	;realizamos salto a fibonacci
+
+;solo el ultimo termino pasa de 255 por lo tanto solo hay una ejecucion 
+;realizamos lo mismo de arriba pero ponemos los bits altos y luego los bajos
+	mov	ax, dx	
+	add	ax, cx	
+	mov	[220h+bx], ah
+	inc 	bl 	
+	mov	[220h+bx], al
+	mov	cx, dx	
+	mov	dx, ax 
+
+
 	int 20h
 
